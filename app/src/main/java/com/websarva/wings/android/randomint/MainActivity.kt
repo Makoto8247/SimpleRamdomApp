@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -12,12 +13,35 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val button = findViewById<Button>(R.id.button_start)
-        button.setOnClickListener {
-            val min  = findViewById<TextView>(R.id.ed_min)
-            val max = findViewById<TextView>(R.id.ed_max)
-            val result = findViewById<TextView>(R.id.text_result)
-        }
+        button.setOnClickListener(SetResult())
 
+    }
+
+    private inner class SetResult : View.OnClickListener{
+        override fun onClick(v: View?) {
+            val min = findViewById<EditText>(R.id.ed_min)
+            val max = findViewById<EditText>(R.id.ed_max)
+            val result = findViewById<TextView>(R.id.text_result)
+            val tx_error = findViewById<TextView>(R.id.text_error)
+            val min_int : Int = if(min.text.toString() != ""){
+                Integer.parseInt(min.text.toString())
+            }else{
+                1
+            }
+            val max_int : Int = if(max.text.toString() != ""){
+                Integer.parseInt(max.text.toString())
+            }else{
+                6
+            }
+
+            tx_error.text = ""
+
+            if(min_int <= max_int){
+                result.text = (min_int..max_int).random().toString()
+            }else{
+                tx_error.text = "最小値と最大値が間違っています。"
+            }
+        }
     }
 
 }
