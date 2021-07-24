@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">整数ランダムアプリ</string>
+    <string name="exp">整数を入力してください</string>
+    <string name="min">Min:</string>
+    <string name="max">Max:</string>
+    <string name="start">開始</string>
+    <string name="result">結果:</string>
+</resources>
