@@ -23,23 +23,28 @@ class MainActivity : AppCompatActivity() {
             val max = findViewById<EditText>(R.id.ed_max)
             val result = findViewById<TextView>(R.id.text_result)
             val tx_error = findViewById<TextView>(R.id.text_error)
-            val min_int : Int = if(min.text.toString() != ""){
-                Integer.parseInt(min.text.toString())
-            }else{
-                1
-            }
-            val max_int : Int = if(max.text.toString() != ""){
-                Integer.parseInt(max.text.toString())
-            }else{
-                6
-            }
 
             tx_error.text = ""
 
-            if(min_int <= max_int){
-                result.text = (min_int..max_int).random().toString()
-            }else{
-                tx_error.text = "最小値と最大値が間違っています。"
+            try {
+                val min_int: Int = if (min.text.toString() != "") {
+                    Integer.parseInt(min.text.toString())
+                } else {
+                    1
+                }
+                val max_int: Int = if (max.text.toString() != "") {
+                    Integer.parseInt(max.text.toString())
+                } else {
+                    6
+                }
+
+                if (min_int <= max_int) {
+                    result.text = "%,d".format((min_int..max_int).random())
+                } else {
+                    tx_error.text = "最小値と最大値が間違っています。"
+                }
+            }catch(e:NumberFormatException){
+                tx_error.text = "入力された数値が大きすぎます。"
             }
         }
     }

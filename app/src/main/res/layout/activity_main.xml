@@ -104,9 +104,10 @@
 
     <TextView
         android:id="@+id/text_result"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="0"
+        android:maxLines="1"
         app:autoSizeMinTextSize="10sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
